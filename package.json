@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "highcharts": "^6.2.0",
+    "highcharts-vue": "^1.2.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {
