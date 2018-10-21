@@ -9,7 +9,11 @@
       <highcharts :options="chartOptions"></highcharts>
     </div>
     <div v-if="!coins && !coinsMonth">
+<<<<<<< HEAD
       <img src="./assets/loading.gif" alt="...Loading">
+=======
+      <img src="@/assets/loading.gif" alt="...Loading">
+>>>>>>> 699a702e22367743d2753e1ebe9ebe659917c989
     </div>
   </div>
 </template>
@@ -68,13 +72,21 @@ export default {
     }
   },
   methods: {
+<<<<<<< HEAD
     getCurrentCoins() {
+=======
+    async getCurrentCoins() {
+>>>>>>> 699a702e22367743d2753e1ebe9ebe659917c989
       this.$http.get('all/')
                 .then((res) => {
                   this.coins = res.data;
                 })
     },
+<<<<<<< HEAD
     getCoinsLastMonth() {
+=======
+    async getCoinsLastMonth() {
+>>>>>>> 699a702e22367743d2753e1ebe9ebe659917c989
       this.$http.get('list/'+this.coin+'/'+this.days)
                 .then((res) => {
                   this.coinsMonth = res.data;
@@ -90,7 +102,11 @@ export default {
         return new Date(date).toJSON().slice(0,10).split('-').reverse().join('/');
       }
       return new Date().toJSON().slice(0,10).split('-').reverse().join('/');
+<<<<<<< HEAD
     }
+=======
+    },
+>>>>>>> 699a702e22367743d2753e1ebe9ebe659917c989
   }
 }
 </script>

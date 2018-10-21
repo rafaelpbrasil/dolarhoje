@@ -12,6 +12,11 @@ Vue.use(highchartsVue);
 Vue.config.productionTip = false
 
 new Vue({
+<<<<<<< HEAD
   el: '#app',
   render: h => h(App)
 })
+=======
+  render: h => h(App)
+}).$mount('#app')
+>>>>>>> 699a702e22367743d2753e1ebe9ebe659917c989
