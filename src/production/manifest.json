@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Dólar Hoje",
+  "version": "1.0",
+  "description": "Mostra o dólar do dia atual e o seu valor nos ultimos 15 dias",
+
+
+  "browser_action": {
+    "default_title": "Dólar Hoje",
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "scripts": ["build.js"]
+  }
+}
