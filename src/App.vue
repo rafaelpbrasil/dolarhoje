@@ -1,14 +1,15 @@
 <template>
-  <div id="app" class="flex">
-    <div v-if="coins">
-      <h1>Dinheiro Hoje {{ this.date }}</h1>
-      <h1>{{ coins.USD.codein }} -> {{ coins.USD.name }} / {{ coins.USD.ask }}</h1>
+  <div id="app">
+    <div v-if="coins" class="row">
+      <h1 class="start">&nbsp;{{ this.date }}</h1>
+      <h1>{{ coins.USD.ask }} {{ coins.USD.codein }}&nbsp;</h1>
     </div>
-    <div v-if="coinsMonth">
+    <br>
+    <div v-if="coinsMonth" class="graph">
       <highcharts :options="chartOptions"></highcharts>
     </div>
     <div v-if="!coins && !coinsMonth">
-      <img src="@/assets/loading.gif" alt="...Loading" class="loading">
+      <img src="@/assets/loading.gif" alt="...Loading">
     </div>
   </div>
 </template>
@@ -93,3 +94,31 @@ export default {
   }
 }
 </script>
+
+<style>
+  #app {
+    font-family: Helvatica, Arial, sans-serif;
+    -webkit-font-smoothing: antialised;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
+
+  .row {
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: row;
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+
+  .start {
+    margin-right: auto;
+  }
+
+  .graph {
+    display: flex;
+    justify-content: center;
+  }
+</style>
