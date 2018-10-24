@@ -1,20 +1,21 @@
 <template>
   <div id="app">
     <div v-if="coins" class="row">
-      <h1 class="start">&nbsp;{{ this.date }}</h1>
-      <h1>{{ coins.USD.ask }} {{ coins.USD.codein }}&nbsp;</h1>
+      <h2>{{ this.date }}</h2>
+      <h2>1 {{ coins.USD.code }} => {{ coins.USD.ask }} {{ coins.USD.codein }}</h2>
     </div>
     <br>
     <div v-if="coinsMonth" class="graph">
       <highcharts :options="chartOptions"></highcharts>
     </div>
     <div v-if="!coins && !coinsMonth">
-      <img src="./assets/loading.gif" alt="...Loading">
+      <img :src="getGifPath()" alt="...Loading">
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'app',
   data() {
@@ -90,6 +91,15 @@ export default {
         return new Date(date).toJSON().slice(0,10).split('-').reverse().join('/');
       }
       return new Date().toJSON().slice(0,10).split('-').reverse().join('/');
+    },
+    getGifPath() {
+      let gifUrl = '';
+      if (process.env.NODE_ENV === 'production') {
+        gifUrl =  'images/loading.gif';
+      } else {
+        gifUrl = './src/static/images/loading.gif'
+      }
+      return gifUrl;
     }
   }
 }
@@ -107,8 +117,6 @@ export default {
 
   .row {
     background-color: #f9f9f9;
-    display: flex;
-    flex-direction: row;
     margin-left: 150px;
     margin-right: 150px;
   }

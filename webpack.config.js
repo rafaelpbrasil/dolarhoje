@@ -76,9 +76,10 @@ if (process.env.NODE_ENV === 'production') {
       minimize: true
     }),
     new CopyWebpackPlugin([
-      {
-        from: 'src/static'
-      }
+      { from: 'src/static/manifest.json'},
+      { from: 'src/static/popup.html'},
+      { from: 'src/static/icons', to: 'icons'},
+      { from: 'src/static/images', to: 'images'}
     ])
   ])
 }
