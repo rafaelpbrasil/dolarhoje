@@ -1,11 +1,21 @@
 {
   "manifest_version": 2,
   "name": "Dólar Hoje",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Mostra o dólar do dia atual e o seu valor nos ultimos 15 dias",
-
-
+  "icons": {
+    "16": "dolarhoje16.png",
+	  "32": "dolarhoje32.png",
+	  "48": "dolarhoje48.png",
+	  "64": "dolarhoje64.png",
+	  "128": "dolarhoje128.png"
+  },
+  
   "browser_action": {
+    "default_icon": {
+      "32": "dolarhoje32.png",
+      "64": "dolarhoje64.png"
+    },
     "default_title": "Dólar Hoje",
     "default_popup": "popup.html"
   },
