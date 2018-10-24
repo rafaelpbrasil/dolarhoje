@@ -2,7 +2,11 @@
   <div id="app">
     <div v-if="coins" class="row">
       <h2>{{ formatDate() }}</h2>
-      <h2>1 {{ coins.USD.code }} => {{ coins.USD.ask }} {{ coins.USD.codein }}</h2>
+      <h2>
+        {{ coins.USD.code }} &nbsp; <input type="number" v-model="valueUSD">
+        <font-awesome-icon icon="exchange-alt" /> &nbsp;
+        {{ coins.USD.codein }} &nbsp; <label>{{valueBRL}}</label>
+      </h2>
     </div>
     <br>
     <chart></chart>
@@ -24,12 +28,19 @@ export default {
   },
   data() {
     return {
+      valueUSD: 1,
       coin: 'USD-BRL',
+      valueBRL: null,
       days: '15',
       coins: '',
       update: ''
     }
   },
+  watch: {
+    valueUSD(oldVal, newVal) {
+      this.valueBRL =  oldVal * this.coins.USD.ask;
+    }
+  },  
   mounted() {
     this.getCurrentCoins();
   },
@@ -38,6 +49,7 @@ export default {
       this.$http.get('all/')
                 .then((res) => {
                   this.coins = res.data;
+                  this.valueBRL = res.data.USD.ask;
                 })
     }
   }
@@ -59,4 +71,24 @@ export default {
     margin-left: 150px;
     margin-right: 150px;
   }
+   
+  .row input {
+    font-family: Helvatica, Arial, sans-serif;
+    font-size: 1.0em;
+    font-weight: bold;
+    width: 120px;
+    border: none;
+    background-color: #f9f9f9;
+    outline: none;
+  }
+
+  input[type='number'] {
+    -moz-appearance:textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+    margin: 0;
+}
 </style>
