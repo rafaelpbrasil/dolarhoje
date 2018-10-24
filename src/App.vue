@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div v-if="coins" class="row">
-      <h2>{{ this.date }}</h2>
+      <h2>{{ formatDate() }}</h2>
       <h2>1 {{ coins.USD.code }} => {{ coins.USD.ask }} {{ coins.USD.codein }}</h2>
     </div>
     <br>
@@ -15,16 +15,17 @@
 </template>
 
 <script>
+import mixins from './mixins.js';
 
 export default {
   name: 'app',
+  mixins: [mixins],
   data() {
     return {
       coin: 'USD-BRL',
       days: '15',
       coins: '',
       coinsMonth: '',
-      date: this.formatDate(),
       update: ''
     }
   },
@@ -80,26 +81,6 @@ export default {
                 .then((res) => {
                   this.coinsMonth = res.data;
                 })
-    },
-    formatDate(date) {
-      if (date) {
-        if (Array.isArray(date)) {
-          return date.map((value) => {
-            return new Date(value).toJSON().slice(0,10).split('-').reverse().join('/');
-          });
-        }
-        return new Date(date).toJSON().slice(0,10).split('-').reverse().join('/');
-      }
-      return new Date().toJSON().slice(0,10).split('-').reverse().join('/');
-    },
-    getGifPath() {
-      let gifUrl = '';
-      if (process.env.NODE_ENV === 'production') {
-        gifUrl =  'images/loading.gif';
-      } else {
-        gifUrl = './src/static/images/loading.gif'
-      }
-      return gifUrl;
     }
   }
 }
