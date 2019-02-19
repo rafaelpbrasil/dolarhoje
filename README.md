@@ -1,6 +1,6 @@
 # dolarhoje
 
-> Extensão que mostra a cotaç
+> Extensão que mostra a cotação do dólar nos ultimos 15 dias.
 
 ## Build Setup
 
