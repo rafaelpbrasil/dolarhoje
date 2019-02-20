@@ -3,7 +3,7 @@
     <div v-if="coins" class="row">
       <h2>{{ formatDate() }}</h2>
       <h2>
-        {{ coins.USD.code }} &nbsp; <input type="number" v-model="valueUSD">
+        {{ coins.USD.code }} &nbsp; <input type="number" min="0" v-model="valueUSD">
         <font-awesome-icon icon="exchange-alt" /> &nbsp;
         {{ coins.USD.codein }} &nbsp; <label>{{parseFloat(valueBRL).toFixed(2)}}</label>
       </h2>
@@ -57,6 +57,11 @@ export default {
 </script>
 
 <style>
+  body {
+    max-width: 800px;
+    max-height: 600px;
+  }
+
   #app {
     font-family: Helvatica, Arial, sans-serif;
     -webkit-font-smoothing: antialised;
@@ -76,7 +81,7 @@ export default {
     font-family: Helvatica, Arial, sans-serif;
     font-size: 1.0em;
     font-weight: bold;
-    width: 120px;
+    max-width: 100px;
     border: none;
     background-color: #f9f9f9;
     outline: none;
