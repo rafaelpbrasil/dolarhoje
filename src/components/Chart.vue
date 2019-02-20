@@ -30,7 +30,7 @@ export default {
           fontFamily: "'Montserrat', Helvatica, Arial, sansSerif"
         },
         colors: [
-          '#6af9c4'
+          '#f44242'
         ],
         title: {
           text: 'Dólar nos ultimos 15 dias'
