@@ -5,7 +5,7 @@
       <h2>
         {{ coins.USD.code }} &nbsp; <input type="number" v-model="valueUSD">
         <font-awesome-icon icon="exchange-alt" /> &nbsp;
-        {{ coins.USD.codein }} &nbsp; <label>{{valueBRL}}</label>
+        {{ coins.USD.codein }} &nbsp; <label>{{parseFloat(valueBRL).toFixed(2)}}</label>
       </h2>
     </div>
     <br>
@@ -81,14 +81,4 @@ export default {
     background-color: #f9f9f9;
     outline: none;
   }
-
-  input[type='number'] {
-    -moz-appearance:textfield;
-  }
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-    margin: 0;
-}
 </style>
