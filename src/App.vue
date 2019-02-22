@@ -37,6 +37,9 @@ export default {
     }
   },
   watch: {
+    valueBRL() {
+      this.getBadge();
+    },
     valueUSD(oldVal, newVal) {
       this.valueBRL =  oldVal * this.coins.USD.ask;
     }
@@ -49,8 +52,12 @@ export default {
       this.$http.get('all/')
                 .then((res) => {
                   this.coins = res.data;
-                  this.valueBRL = res.data.USD.ask;
+                  this.valueBRL = parseFloat(res.data.USD.ask).toFixed(2)
                 })
+    },
+    getBadge(){
+      chrome.browserAction.setBadgeText({text: this.valueBRL});
+      chrome.browserAction.setBadgeBackgroundColor({color: [225, 0, 0, 255]});
     }
   }
 }
