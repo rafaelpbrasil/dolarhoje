@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Dólar Hoje",
-  "version": "1.2.2",
+  "version": "1.3",
   "description": "Mostra o dólar do dia atual e o seu valor nos ultimos 15 dias",
   "icons": {
     "16": "icons/ico_16.png",
