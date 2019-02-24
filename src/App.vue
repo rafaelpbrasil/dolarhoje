@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div v-if="coins" class="row">
-      <h2>{{ formatDate() }}</h2>
+      <h2>{{ formatDate(this.coins.date) }}</h2>
       <h2>
-        {{ coins.USD.code }} &nbsp; <input type="number" min="0" v-model="valueUSD">
+        {{ Object.keys(this.coins.rates)[0] }} &nbsp; <input type="number" min="0" v-model="valueUSD">
         <font-awesome-icon icon="exchange-alt" /> &nbsp;
-        {{ coins.USD.codein }} &nbsp; <label>{{parseFloat(valueBRL).toFixed(2)}}</label>
+        {{ Object.keys(this.coins.rates)[1] }} &nbsp; <label>{{parseFloat(valueBRL).toFixed(2)}}</label>
       </h2>
     </div>
     <br>
@@ -29,7 +29,6 @@ export default {
   data() {
     return {
       valueUSD: 1,
-      coin: 'USD-BRL',
       valueBRL: null,
       days: '15',
       coins: '',
@@ -41,7 +40,7 @@ export default {
       this.getBadge();
     },
     valueUSD(oldVal, newVal) {
-      this.valueBRL =  oldVal * this.coins.USD.ask;
+      this.valueBRL =  oldVal * this.coins.rates.BRL;
     }
   },  
   mounted() {
@@ -49,10 +48,10 @@ export default {
   },
   methods: {
     getCurrentCoins() {
-      this.$http.get('all/')
+      this.$http.get('latest?symbols=USD,BRL&base=USD')
                 .then((res) => {
                   this.coins = res.data;
-                  this.valueBRL = parseFloat(res.data.USD.ask).toFixed(2)
+                  this.valueBRL = parseFloat(res.data.rates.BRL).toFixed(2);
                 })
     },
     getBadge(){

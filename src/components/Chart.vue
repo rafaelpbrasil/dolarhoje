@@ -8,16 +8,15 @@
 
 <script>
 import mixins from '../mixins.js';
+import moment from 'moment';
 
 export default {
   name: 'app',
   mixins: [mixins],
   data() {
     return {
-      coin: 'USD-BRL',
-      days: '15',
-      coinsMonth: '',
-      update: ''
+      days: '20',
+      coinsMonth: ''
     }
   },
   mounted() {
@@ -37,8 +36,8 @@ export default {
         },
         xAxis: {
           categories: this.formatDate(
-            this.coinsMonth.map( function(value) {
-              return value.create_date;
+              this.coinsMonth.map( function(value) {
+              return value[0];
             })
           )
         },
@@ -49,9 +48,9 @@ export default {
         },
         series: [{
           name: 'Dólar',
-          data: this.coinsMonth.map((value) => {
-            return parseFloat(value.ask);
-          })
+          data:  this.coinsMonth.map( function(value) {
+              return parseFloat(value[1].BRL);
+            })
         }],
         credits: {
           enabled: false
@@ -61,11 +60,14 @@ export default {
   },
   methods: {
     getCoinsLastMonth() {
-      this.$http.get('list/'+this.coin+'/'+this.days)
+      var endDate = moment().format('YYYY-MM-DD');
+      var startDate = moment().subtract(this.days, "days").format('YYYY-MM-DD');
+
+      this.$http.get('https://api.exchangeratesapi.io/history?start_at='+startDate+'&end_at='+endDate+'&symbols=USD,BRL&base=USD')
                 .then((res) => {
-                  this.coinsMonth = res.data;
+                  this.coinsMonth = Object.entries(res.data.rates).sort().reverse();
                 })
-    }
+    },
   }
 }
 </script>
