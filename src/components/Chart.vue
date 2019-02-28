@@ -34,6 +34,11 @@ export default {
         title: {
           text: 'Dólar nos ultimos 15 dias'
         },
+        tooltip: {
+          formatter: function() {
+            return 'R$ ' + this.y.toFixed(2);
+          }
+        },
         xAxis: {
           categories: this.formatDate(
               this.coinsMonth.map( function(value) {
