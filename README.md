@@ -36,8 +36,7 @@ npm run build
 
   
 
-## Usando Docker
-##  Local Setup
+##  Docker Setup
 * Prerequisites
 > Docker
 > Docker-compose
@@ -54,7 +53,7 @@ docker build .
 docker-compose up -d
 
 # Access the Aplication on link
-```
 [localhost:8080](localhost:8080)
+
 ```
  
