@@ -21,7 +21,7 @@ import mixins from './mixins';
 import chart from './components/Chart';
 
 export default {
-  name: 'app',
+  name: 'App',
   mixins: [mixins],
   components: {
     chart
