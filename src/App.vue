@@ -30,9 +30,7 @@ export default {
     return {
       valueUSD: 1,
       valueBRL: null,
-      days: '15',
       coins: '',
-      update: ''
     }
   },
   watch: {
@@ -42,7 +40,7 @@ export default {
     valueUSD(oldVal, newVal) {
       this.valueBRL =  oldVal * this.coins.rates.BRL;
     }
-  },  
+  },
   mounted() {
     this.getCurrentCoins();
   },
@@ -82,7 +80,7 @@ export default {
     margin-left: 150px;
     margin-right: 150px;
   }
-   
+
   .row input {
     font-family: Helvatica, Arial, sans-serif;
     font-size: 1.0em;
