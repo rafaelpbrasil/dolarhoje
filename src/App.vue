@@ -3,9 +3,9 @@
     <div v-if="coins" class="row">
       <h2>{{ formatDate(this.coins.date) }}</h2>
       <h2>
-        {{ Object.keys(this.coins.rates)[0] }} &nbsp; <input type="number" min="0" v-model="valueUSD">
+        {{ Object.keys(this.coins.rates)[1] }} &nbsp; <input type="number" min="0" v-model="valueUSD">
         <font-awesome-icon icon="exchange-alt" /> &nbsp;
-        {{ Object.keys(this.coins.rates)[1] }} &nbsp; <label>{{parseFloat(valueBRL).toFixed(2)}}</label>
+        {{ Object.keys(this.coins.rates)[0] }} &nbsp; <label>{{parseFloat(valueBRL).toFixed(2)}}</label>
       </h2>
     </div>
     <br>
