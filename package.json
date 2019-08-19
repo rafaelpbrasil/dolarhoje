@@ -17,6 +17,7 @@
     "highcharts": "^6.2.0",
     "highcharts-vue": "^1.2.0",
     "moment": "^2.24.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.5.11"
   },
   "browserslist": [
@@ -32,7 +33,7 @@
     "babel-preset-stage-3": "^6.24.1",
     "copy-webpack-plugin": "^4.5.4",
     "cross-env": "^5.0.5",
-    "css-loader": "^3.2.0",
+    "css-loader": "^1.0.1",
     "file-loader": "^1.1.4",
     "vue-loader": "^14.2.2",
     "vue-template-compiler": "^2.4.4",
