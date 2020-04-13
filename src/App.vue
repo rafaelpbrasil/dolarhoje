@@ -3,15 +3,22 @@
     <div v-if="coins" class="row">
       <h2>{{ formatDate(this.coins.date) }}</h2>
       <h2>
-        {{ Object.keys(this.coins.rates)[1] }} &nbsp; <input type="number" min="0" v-model="valueUSD">
+        {{ Object.keys(this.coins.rates)[1] }}
+        <input type="number" min="0" v-model="valueUSD">
+
         <font-awesome-icon icon="exchange-alt" /> &nbsp;
-        {{ Object.keys(this.coins.rates)[0] }} &nbsp; <label>{{parseFloat(valueBRL).toFixed(2)}}</label>
+
+        {{ Object.keys(this.coins.rates)[0] }}
+        <label>{{parseFloat(valueBRL).toFixed(2)}}</label>
       </h2>
     </div>
     <br>
     <chart></chart>
     <div v-if="!coins">
       <img :src="getGifPath()" alt="...Loading">
+    </div>
+    <div class="source">
+      Source: <a href="https://exchangeratesapi.io/" target="_blank">Exchange Rates API</a>
     </div>
   </div>
 </template>
@@ -47,14 +54,16 @@ export default {
   methods: {
     getCurrentCoins() {
       this.$http.get('latest?symbols=USD,BRL&base=USD')
-                .then((res) => {
-                  this.coins = res.data;
-                  this.valueBRL = parseFloat(res.data.rates.BRL).toFixed(2);
-                })
+        .then((res) => {
+          this.coins = res.data;
+          this.valueBRL = parseFloat(res.data.rates.BRL).toFixed(2);
+        })
     },
     getBadge(){
-      chrome.browserAction.setBadgeText({text: this.valueBRL});
-      chrome.browserAction.setBadgeBackgroundColor({color: [225, 0, 0, 255]});
+      if (window.chrome.browserAction) {
+        window.chrome.browserAction.setBadgeText({text: this.valueBRL});
+        window.chrome.browserAction.setBadgeBackgroundColor({color: [225, 0, 0, 255]});
+      }
     }
   }
 }
@@ -72,13 +81,13 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
   }
 
   .row {
     background-color: #f9f9f9;
     margin-left: 150px;
     margin-right: 150px;
+    padding: 2px;
   }
 
   .row input {
