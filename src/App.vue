@@ -4,7 +4,7 @@
       <h2>{{ formatDate(this.coins.date) }}</h2>
       <h2>
         {{ Object.keys(this.coins.rates)[1] }}
-        <input type="number" min="0" v-model="valueUSD">
+        <input autofocus type="number" min="0" max="99999999999999999999999" v-model="valueUSD">
 
         <font-awesome-icon icon="exchange-alt" /> &nbsp;
 
@@ -18,7 +18,11 @@
       <img :src="getGifPath()" alt="...Loading">
     </div>
     <div class="source">
-      Source: <a href="https://exchangeratesapi.io/" target="_blank">Exchange Rates API</a>
+      <small>
+        Source: <a href="https://exchangeratesapi.io/" target="_blank">Exchange Rates API</a>
+        |
+        <a href="https://github.com/Daimioo/dolarhoje">github.com/Daimioo/dolarhoje</a>
+      </small>
     </div>
   </div>
 </template>
@@ -84,9 +88,7 @@ export default {
   }
 
   .row {
-    background-color: #f9f9f9;
-    margin-left: 150px;
-    margin-right: 150px;
+    background-color: #eee;
     padding: 2px;
   }
 
@@ -95,7 +97,7 @@ export default {
     font-size: 1.0em;
     font-weight: bold;
     max-width: 100px;
-    border: none;
+    border: 1px solid #ddd;
     background-color: #f9f9f9;
     outline: none;
   }
