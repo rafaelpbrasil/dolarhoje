@@ -1,7 +1,7 @@
 {
   "name": "dolarhoje",
-  "description": "Extensão que mostra a cotação do dólar nos ultimos 15 dias",
-  "version": "1.0.0",
+  "description": "Extensão que mostra a cotação do dólar nos últimos dias",
+  "version": "1.4.0",
   "author": "Rafael Pontes",
   "license": "MIT",
   "private": true,

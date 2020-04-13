@@ -1,5 +1,14 @@
 <template>
   <div>
+    <p>
+      Dólar nos últimos
+      <select v-model="days">
+        <option v-for="day in arrDays" v-bind:value="day">
+          {{ day }}
+        </option>
+      </select>
+      dias
+    </p>
     <div v-if="coinsMonth" class="graph">
       <highcharts :options="chartOptions"></highcharts>
     </div>
@@ -15,8 +24,14 @@ export default {
   mixins: [mixins],
   data() {
     return {
-      days: '20',
-      coinsMonth: ''
+      days: '30',
+      coinsMonth: '',
+      arrDays: [7, 15, 30, 60, 90, 180, 365]
+    }
+  },
+  watch: {
+    days() {
+      this.getCoinsLastMonth();
     }
   },
   mounted() {
@@ -25,41 +40,45 @@ export default {
   computed: {
     chartOptions() {
       return {
+        chart: {
+          type: 'spline'
+        },
         style: {
           fontFamily: "'Montserrat', Helvatica, Arial, sansSerif"
         },
         colors: [
           '#f44242'
         ],
-        title: {
-          text: 'Dólar nos ultimos 15 dias'
-        },
+        title: null,
         tooltip: {
           formatter: function() {
-            return 'R$ ' + this.y.toFixed(2);
+            return this.x + '<br>$1 => R$' + this.y.toFixed(2);
           }
         },
         xAxis: {
           categories: this.formatDate(
-              this.coinsMonth.map( function(value) {
+            this.coinsMonth.map(function (value) {
               return value[0];
             })
           )
         },
         yAxis: {
           title: {
-            text: 'Valor do dólar'
+            text: 'BRL'
+          },
+          labels: {
+            formatter: function() {
+              return 'R$' + this.value.toFixed(2);
+            }
           }
         },
         series: [{
-          name: 'Dólar',
-          data:  this.coinsMonth.map( function(value) {
-              return parseFloat(value[1].BRL);
-            })
+          name: 'Valor do Dólar em Real',
+          data: this.coinsMonth.map(function(value) {
+            return parseFloat(value[1].BRL);
+          })
         }],
-        credits: {
-          enabled: false
-        }
+        credits: { enabled: false }
       }
     }
   },
@@ -68,10 +87,10 @@ export default {
       var endDate = moment().format('YYYY-MM-DD');
       var startDate = moment().subtract(this.days, "days").format('YYYY-MM-DD');
 
-      this.$http.get('https://api.exchangeratesapi.io/history?start_at='+startDate+'&end_at='+endDate+'&symbols=USD,BRL&base=USD')
-                .then((res) => {
-                  this.coinsMonth = Object.entries(res.data.rates).sort().reverse();
-                })
+      this.$http.get('/history?start_at='+startDate+'&end_at='+endDate+'&symbols=USD,BRL&base=USD')
+        .then((res) => {
+          this.coinsMonth = Object.entries(res.data.rates).sort().reverse().reverse();
+        });
     },
   }
 }
