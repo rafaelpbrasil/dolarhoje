@@ -22,6 +22,3 @@ npm run dev
 npm run build
 
 ```
-
-# Access the Aplication on link
- > [localhost:8080](http://localhost:8080)
