@@ -2,7 +2,7 @@
 # ![dolarhoje_icon](https://raw.githubusercontent.com/Daimioo/dolarhoje/master/src/static/icons/ico_32.png) dolarhoje
 
 
-> Extensão que mostra a cotação do dólar em real nos últimos dias.
+> Extensão que mostra a cotação do dólar.
 
 ##  Local Setup
 * Prerequisites
