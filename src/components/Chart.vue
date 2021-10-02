@@ -87,7 +87,7 @@ export default {
       var endDate = moment().format('YYYY-MM-DD');
       var startDate = moment().subtract(this.days, "days").format('YYYY-MM-DD');
 
-      this.$http.get('/history?start_at='+startDate+'&end_at='+endDate+'&symbols=USD,BRL&base=USD')
+      this.$http.get('/timeseries?start_date='+startDate+'&end_date='+endDate+'&symbols=USD,BRL&base=USD')
         .then((res) => {
           this.coinsMonth = Object.entries(res.data.rates).sort().reverse().reverse();
         });

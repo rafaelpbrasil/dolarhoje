@@ -19,7 +19,7 @@
     </div>
     <div class="source">
       <small>
-        Source: <a href="https://exchangeratesapi.io/" target="_blank">Exchange Rates API</a>
+        Source: <a href="https://exchangerate.host" target="_blank">Exchange Rates API</a>
         |
         <a href="https://github.com/Daimioo/dolarhoje">github.com/Daimioo/dolarhoje</a>
       </small>
